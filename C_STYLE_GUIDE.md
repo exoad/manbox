@@ -683,7 +683,7 @@ OOP is fun and there is a decent way to emulate it with C through pure compositi
 > 
 > Void circleDraw(Shape* s)
 > {
->     Circle* self = (Circle*) s; // assumes s is a circle, even with proper naming (described below), it is checked by the compiler 
+>     Circle* self = (Circle*) s; // assumes s is a circle, even with proper naming (described below), it is not checked by the compiler 
 >     self->radius += 1.0f; // UB if 's' is not a Circle
 > }
 > 
