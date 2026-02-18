@@ -2,6 +2,9 @@
 
 This is a collection of just general rules and guidelines that I employ for writing C to make it more readable and enjoyable for specifically myself. If you want to use this as a guide, feel free to do so, but please don't take it as gospel, and feel free to modify it to your liking. I also want to note that this is not a comprehensive style guide, and there are many things that I don't cover here, but I will try to cover the most important ones.
 
+> [!WARNING]
+> This guide does not serve to teach best practices or how to write C, it assumes that you already know most of the best practices idioms of C. This document serves only as a guide on how to structure and format your code and write in a custom opinionated way.
+
 ## Compiler Setup
 
 - Preferably Standard C17, but C11 is also acceptable.
