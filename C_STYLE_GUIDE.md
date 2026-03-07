@@ -106,8 +106,9 @@ typedef int32_t Int32;
 typedef int64_t Int64;
 typedef uint32_t UInt32;
 typedef uint64_t UInt64;
-typedef char Int8;
+typedef int8_t Int8;
 typedef uint8_t UInt8;
+typedef char Utf8;
 typedef uintptr_t UPtr;
 typedef size_t Size;
 typedef float Float32;
@@ -115,10 +116,13 @@ typedef double Float64;
 typedef int16_t Int16;
 typedef uint16_t UInt16;
 typedef void Void;
-#define CharSeq const Int8*
 typedef FILE CFile;
 typedef bool Bool;
 typedef Void* Any;
+
+#define CharSeq const Utf8*
+#define CharSeq16 const Utf16*
+#define CharSeq32 const Utf32*
 
 #if defined(_WIN32) || defined(_WIN64)
     #if defined(build)
@@ -149,6 +153,7 @@ typedef Void* Any;
 #define deprecated __attribute__((deprecated))
 #define unused     __attribute__((unused))
 #define packed     __attribute__((packed))
+#define never         __attribute__((noreturn))
 #else
 #define pure
 #define hot
@@ -158,12 +163,19 @@ typedef Void* Any;
 #define deprecated
 #define unused
 #define packed
+#define never
 #endif
 
 #define null NULL
 #define simple static inline
 #define PI 3.14159265358979323846f
 #define sizeOf sizeof
+#define true ((Bool)1)
+#define false ((Bool)0)
+#define METHOD(Type) Void Type##_
+#define DEFER(label) if (true) { goto label; } else
+#define print(...) fprintf(stdout, __VA_ARGS__)
+#define println(...) do { print(__VA_ARGS__); print("\n"); } while(0)
 
 simple Bool stringEquals(CharSeq a, CharSeq b)
 {
@@ -249,6 +261,8 @@ Int32 dlclose(Any handle) {
 typedef Any DLHandle;
 #endif
 #endif
+
+
 
 #endif
 ```
@@ -637,6 +651,23 @@ if(myVar) // BAD
 ## Embrace `goto`
 
 Although generally frowned upon, learn to manage it where necessary in order to avoid forgetting memory cleanup (i.e. simulating the `defer` keyword in languages like Go).
+
+## Defer Macro Helper
+
+The macro `DEFER(label)` simulates RAII/defer cleanup bahavior using `goto` internally.
+
+```c
+Void* data = malloc(n);
+if(data == null)
+{
+  return;
+}
+DEFER(cleanup);
+// work …
+cleanup:
+free(data);
+data = null;
+```
 
 ## Include Conventions
 
