@@ -88,7 +88,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <type_traits>
 #include <utility>
 
-// --- Primitive types ---
 using Int8    = int8_t;
 using Int16   = int16_t;
 using Int32   = int32_t;
@@ -107,32 +106,20 @@ using Void    = void;
 using Any     = void*;
 using CFile   = std::FILE;
 
-// --- String types ---
-using StrView = std::string_view;   // Preferred for read-only string parameters
-using Str     = std::string;        // Preferred for owned strings
-
-// --- Smart pointer aliases ---
+using StrView = std::string_view;   
+using Str     = std::string;        
 template<typename T>
 using UniqPtr = std::unique_ptr<T>;
-
 template<typename T>
 using SharedPtr = std::shared_ptr<T>;
-
 template<typename T>
 using WeakPtr = std::weak_ptr<T>;
-
-// --- Optional / sum types ---
 template<typename T>
 using Opt = std::optional<T>;
-
 template<typename... Ts>
 using Variant = std::variant<Ts...>;
-
-// --- Function wrapper alias ---
 template<typename Sig>
 using Fn = std::function<Sig>;
-
-// --- Factory helpers ---
 template<typename T, typename... Args>
 UniqPtr<T> makeUniq(Args&&... args)
 {
@@ -145,13 +132,8 @@ SharedPtr<T> makeShared(Args&&... args)
     return std::make_shared<T>(std::forward<Args>(args)...);
 }
 
-// --- Monostate (empty variant sentinel) ---
 using Monostate = std::monostate;
-
-// --- Constants ---
 constexpr Float64 PI = 3.14159265358979323846;
-
-// --- Convenience ---
 #define print(...)   std::fprintf(stdout, __VA_ARGS__)
 #define println(...) do { print(__VA_ARGS__); print("\n"); } while(0)
 ```
