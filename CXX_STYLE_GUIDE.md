@@ -7,36 +7,6 @@ This is a collection of rules and guidelines I employ for writing C++, adapted f
 
 ---
 
-## Table of Contents
-
-1. [Compiler Setup](#compiler-setup)
-2. [Shared Types](#shared-types)
-3. [Naming Conventions](#naming-conventions)
-4. [Formatting](#formatting)
-5. [Declaration Styles](#declaration-styles)
-6. [Namespaces](#namespaces)
-7. [Null Comparisons](#null-comparisons)
-8. [Templates](#templates)
-9. [Concepts and Constraints](#concepts-and-constraints)
-10. [Metaprogramming](#metaprogramming)
-11. [Move Semantics and Value Categories](#move-semantics-and-value-categories)
-12. [Object-Oriented Programming](#object-oriented-programming)
-13. [Operator Overloading](#operator-overloading)
-14. [Lambdas](#lambdas)
-15. [Constexpr and Compile-Time Computation](#constexpr-and-compile-time-computation)
-16. [Type Deduction](#type-deduction)
-17. [Structured Bindings](#structured-bindings)
-18. [Attributes](#attributes)
-19. [Exception Policy](#exception-policy)
-20. [Memory Model and Concurrency](#memory-model-and-concurrency)
-21. [RAII and Resource Management](#raii-and-resource-management)
-22. [Undefined Behavior Awareness](#undefined-behavior-awareness)
-23. [Include Conventions](#include-conventions)
-24. [Header Guard Conventions](#header-guard-conventions)
-25. [Macros](#macros)
-
----
-
 ## Compiler Setup
 
 - Standard: C++17 minimum, C++20 preferred.
